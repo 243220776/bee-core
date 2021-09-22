@@ -1,7 +1,6 @@
 package com.xx.core.script;
 
 /**
- * @author zcy 2019年5月23日
  */
 public class ScriptException extends RuntimeException {
 

@@ -2,7 +2,6 @@ package com.xx.core.boot;
 
 
 /**
- * @author zcy 2019年4月15日
  */
 public class InitializeException extends RuntimeException {
 

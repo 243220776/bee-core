@@ -3,7 +3,6 @@ package com.xx.core.spring;
 import org.springframework.context.ApplicationContext;
 
 /**
- * @author zcy 2019年6月4日
  */
 public class SpringContextHolder {
 

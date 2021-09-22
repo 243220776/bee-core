@@ -30,7 +30,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
 
     @Override
     public void initialize(ConfigurableApplicationContext appContext) {
-        log.info("enable xxx={}", "yyyyyxxx");
+        log.info("enable xxx={}", "init...");
         Class<?> applicationClass = BeeClientConfiguration.getLocalProperies().getApplicationClasss();
         Properties systemDef = new Properties();
         String appName = BeeClientConfiguration.getLocalProperies().getAppName();
@@ -183,7 +183,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
     private void getEnableInitializer(Map<EnableInitializer, Annotation> initializerAnnotations) {
         ResourcePatternResolver rr = new PathMatchingResourcePatternResolver();
         try {
-            Resource[] rs = rr.getResources("classpath*:META-INF/bee/com.xx.core.boot.ApplicationInitializer");
+            Resource[] rs = rr.getResources("classpath*:META-INF/boot/com.xx.core.boot.ApplicationInitializer");
             if (rs != null) {
                 for (Resource r : rs) {
                     List<String> lines = readAllLines(new BufferedReader(new InputStreamReader(r.getInputStream())));
@@ -206,7 +206,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
                             try {
                                 initializerClasst = Class.forName(className);
                             } catch (ClassNotFoundException e) {
-                                throw new InitializeException("META-INF/bee/com.xx.boot.ApplicationInitializer " + line + " "
+                                throw new InitializeException("META-INF/boot/com.xx.boot.ApplicationInitializer " + line + " "
                                         + e.getMessage(), e);
                             }
                             final String condition = StringUtils.isBlank(conditiont) ? "true" : conditiont;

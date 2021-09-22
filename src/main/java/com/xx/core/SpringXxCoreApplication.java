@@ -1,13 +1,15 @@
 package com.xx.core;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.xx.core.boot.Application;
+import com.xx.core.boot.XXStartter;
+import com.xx.core.test.CustomInitializerEnable;
 
-@SpringBootApplication
-public class SpringXxCoreApplication {
+@Application("xx")
+@CustomInitializerEnable
+public class SpringXxCoreApplication extends XXStartter {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringXxCoreApplication.class, args);
+        run(SpringXxCoreApplication.class, args);
     }
 
 }

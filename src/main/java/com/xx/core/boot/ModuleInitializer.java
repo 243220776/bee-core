@@ -8,7 +8,6 @@ import java.lang.annotation.Annotation;
 /**
  * 模块初始化执行器，在ApplicationInitializer初始化器上增加可传递开启注解的方法，如果实现该接口，
  * 则优先调用 {@link #init(Annotation, ConfigurableApplicationContext)},然后调用 {@link #init(ConfigurableApplicationContext)}
- * @author zcy 2019年6月3日
  */
 public interface ModuleInitializer <T extends Annotation> extends ApplicationInitializer {
     

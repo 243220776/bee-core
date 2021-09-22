@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author zcy 2019年5月23日
  */
 public class ScriptFactory implements Script {
 

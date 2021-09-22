@@ -10,7 +10,6 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * @author erxiao 2017年1月18日
  */
 public class BeeClientLocalProperties extends Properties {
 
@@ -19,23 +18,12 @@ public class BeeClientLocalProperties extends Properties {
 	 */
     private static final long serialVersionUID = -827905326646091100L;
 
-    public static final String DEFAULT_BEECONFIG_NAME = "bee";
 
-    private String scanPackage = "com.arcvideo";
-
-    private String basePackage = "com.arcvideo";
+    private String scanPackage = "com.xx.core";
 
     private String appName = "application";
 
-    private String hostIndex = null;
-
-    private String evn = "default";
-
-    private String configServerUrl = "beec.inner.arcvideo.com:2181";
-
-    private String configServerUsername = "user";
-
-    private String configServerPassword;
+    private String rootProperties = "xx.properties";
 
     private Class<?> applicationClasss;
 
@@ -73,44 +61,21 @@ public class BeeClientLocalProperties extends Properties {
 
     private void resetDefault() {
         String appNamePro = getProperty(Constants.CONFIG_APPNAME_KEY);
-        String evnPro = getProperty(Constants.CONFIG_EVN_KEY);
-        String configServerUrlPro = getProperty(Constants.CONFIG_SERVER_URL_KEY);
-        String configServerUsernamePro = getProperty(Constants.CONFIG_SERVER_USERNAME_KEY);
-        String configServerPasswordPro = getProperty(Constants.CONFIG_SERVER_PASSWORD_KEY);
         String scanPackageNamePro = getProperty(Constants.CONFIG_SCANPACKAGE_KEY);
-        String hostIndex = getProperty(Constants.CONFIG_HOSTINDEX_KEY);
         if (!StringUtils.isBlank(scanPackageNamePro)) {
             this.scanPackage = scanPackageNamePro;
         }
         if (StringUtils.isBlank(this.appName)) {
             this.appName = appNamePro;
         }
-        if (!StringUtils.isBlank(evnPro)) {
-            this.evn = evnPro;
-        }
-        if (!StringUtils.isBlank(configServerUrlPro)) {
-            this.configServerUrl = configServerUrlPro;
-        }
-        if (!StringUtils.isBlank(configServerUsernamePro)) {
-            this.configServerUsername = configServerUsernamePro;
-        }
-        if (!StringUtils.isBlank(configServerPasswordPro)) {
-            this.configServerPassword = configServerPasswordPro;
-        }
-        if (!StringUtils.isBlank(hostIndex)) {
-            this.hostIndex = hostIndex;
-        }
         if (StringUtils.isBlank(this.appName)) {
             throw new IllegalArgumentException("the application not found.");
-        }
-        if (StringUtils.isBlank(this.configServerUrl)) {
-            throw new IllegalArgumentException("the config server not found.");
         }
         setProperty(Constants.CONFIG_APPNAME_KEY, this.appName);
     }
 
     protected void loadDefaultFromBeeProperties() {
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("bee.properties");
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(rootProperties);
         if (inputStream != null) {
             load(inputStream);
         }
@@ -131,7 +96,7 @@ public class BeeClientLocalProperties extends Properties {
         } catch (FileNotFoundException e) {
         }
         if (coustemProperties == null) {
-            coustemFile = System.getProperty("bee.config.location");
+            coustemFile = System.getProperty("xx.config.location");
             if (StringUtils.isBlank(coustemFile)) {
                 coustemFile = System.getProperty("spring.config.location");
             }
@@ -173,8 +138,6 @@ public class BeeClientLocalProperties extends Properties {
         if(startClass != null) {
             this.applicationClasss = parentClass;
             this.appName = startClass.value();
-            // 设置默认的basePackage
-            this.basePackage = parentClass.getPackage().getName();
             if(startClass.scanPackage() != null && startClass.scanPackage().length > 0) {
                 this.scanPackage = StringUtils.join(startClass.scanPackage(), ",");
             }
@@ -185,36 +148,8 @@ public class BeeClientLocalProperties extends Properties {
         return appName;
     }
 
-    public String getEvn() {
-        return evn;
-    }
-
-    public void setEvn(String evn) {
-        this.evn = evn;
-    }
-
-    public String getConfigServerUrl() {
-        return configServerUrl;
-    }
-
-    public String getConfigServerUsername() {
-        return configServerUsername;
-    }
-
-    public String getConfigServerPassword() {
-        return configServerPassword;
-    }
-
     public String getScanPackage() {
         return scanPackage;
-    }
-
-    public String getBasePackage() {
-        return basePackage;
-    }
-
-    public String getHostIndex() {
-        return hostIndex;
     }
 
     public Class<?> getApplicationClasss() {

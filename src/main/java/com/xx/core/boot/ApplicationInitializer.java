@@ -1,5 +1,6 @@
 package com.xx.core.boot;
 
+import com.xx.core.config.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
@@ -29,7 +30,6 @@ import java.util.List;
  * 
  * {@link #order()}方法用于标识该执行器的优先级，数字越小优先级越高， 默认取值 ApplicationInitializer.COMMON_ORDER : {@value #COMMON_ORDER}
  * 
- * @author zcy 2019年4月15日
  */
 public interface ApplicationInitializer {
 
@@ -153,7 +153,7 @@ public interface ApplicationInitializer {
 
     default public String[] getScanPackages(ConfigurableApplicationContext applicationContext) {
         String[] scanPackages;
-        String scanPackage = System.getProperty("bee.config.scanPackage");
+        String scanPackage = System.getProperty(Constants.CONFIG_SCANPACKAGE_KEY);
         List<String> scanpackageList = new ArrayList<String>();
         List<String> configSplitList = new ArrayList<String>();
         if (!StringUtils.isBlank(scanPackage)) {
@@ -161,7 +161,7 @@ public interface ApplicationInitializer {
                 configSplitList.add(pack);
             }
         }
-        String springContextScanPackage = applicationContext.getEnvironment().getProperty("bee.config.scanPackage");
+        String springContextScanPackage = applicationContext.getEnvironment().getProperty(Constants.CONFIG_SCANPACKAGE_KEY);
         if (!StringUtils.isBlank(springContextScanPackage)) {
             for (String pack : springContextScanPackage.split(",")) {
                 configSplitList.add(pack);
@@ -209,48 +209,48 @@ public interface ApplicationInitializer {
         }
     }
     
-    default String getProperty(ConfigurableApplicationContext appContext, String key) {
-        return appContext.getEnvironment().getProperty(key);
-    }
-    
-    default String getProperty(ConfigurableApplicationContext appContext, String key, String def) {
-        String val = getProperty(appContext, key);
-        return val == null ? def : val;
-    }
-    
-    default Boolean getBooleanProperty(ConfigurableApplicationContext appContext, String key) {
-        return appContext.getEnvironment().getProperty(key, Boolean.class);
-    }
-    
-    default Boolean getBooleanProperty(ConfigurableApplicationContext appContext, String key, Boolean def) {
-        Boolean val = getBooleanProperty(appContext, key);
-        return val == null ? def : val;
-    }
-    
-    default Integer getIntProperty(ConfigurableApplicationContext appContext, String key) {
-        return appContext.getEnvironment().getProperty(key, Integer.class);
-    }
-    
-    default Integer getIntProperty(ConfigurableApplicationContext appContext, String key, Integer def) {
-        Integer val = getIntProperty(appContext, key);
-        return val == null ? def : val;
-    }
-    
-    default Long getLongProperty(ConfigurableApplicationContext appContext, String key) {
-        return appContext.getEnvironment().getProperty(key, Long.class);
-    }
-    
-    default Long getLongProperty(ConfigurableApplicationContext appContext, String key, Long def) {
-        Long val = getLongProperty(appContext, key);
-        return val == null ? def : val;
-    }
-    
-    default Float getFloatProperty(ConfigurableApplicationContext appContext, String key) {
-        return appContext.getEnvironment().getProperty(key, Float.class);
-    }
-    
-    default Float getFloatProperty(ConfigurableApplicationContext appContext, String key, Float def) {
-        Float val = getFloatProperty(appContext, key);
-        return val == null ? def : val;
-    }
+//    default String getProperty(ConfigurableApplicationContext appContext, String key) {
+//        return appContext.getEnvironment().getProperty(key);
+//    }
+//
+//    default String getProperty(ConfigurableApplicationContext appContext, String key, String def) {
+//        String val = getProperty(appContext, key);
+//        return val == null ? def : val;
+//    }
+//
+//    default Boolean getBooleanProperty(ConfigurableApplicationContext appContext, String key) {
+//        return appContext.getEnvironment().getProperty(key, Boolean.class);
+//    }
+//
+//    default Boolean getBooleanProperty(ConfigurableApplicationContext appContext, String key, Boolean def) {
+//        Boolean val = getBooleanProperty(appContext, key);
+//        return val == null ? def : val;
+//    }
+//
+//    default Integer getIntProperty(ConfigurableApplicationContext appContext, String key) {
+//        return appContext.getEnvironment().getProperty(key, Integer.class);
+//    }
+//
+//    default Integer getIntProperty(ConfigurableApplicationContext appContext, String key, Integer def) {
+//        Integer val = getIntProperty(appContext, key);
+//        return val == null ? def : val;
+//    }
+//
+//    default Long getLongProperty(ConfigurableApplicationContext appContext, String key) {
+//        return appContext.getEnvironment().getProperty(key, Long.class);
+//    }
+//
+//    default Long getLongProperty(ConfigurableApplicationContext appContext, String key, Long def) {
+//        Long val = getLongProperty(appContext, key);
+//        return val == null ? def : val;
+//    }
+//
+//    default Float getFloatProperty(ConfigurableApplicationContext appContext, String key) {
+//        return appContext.getEnvironment().getProperty(key, Float.class);
+//    }
+//
+//    default Float getFloatProperty(ConfigurableApplicationContext appContext, String key, Float def) {
+//        Float val = getFloatProperty(appContext, key);
+//        return val == null ? def : val;
+//    }
 }
