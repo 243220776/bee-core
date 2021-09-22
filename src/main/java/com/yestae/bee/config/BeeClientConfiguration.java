@@ -1,12 +1,11 @@
 /**
  *
  */
-package com.xx.core.config;
+package com.yestae.bee.config;
 
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author erxiao 2017年3月28日
  */
 public class BeeClientConfiguration {
 

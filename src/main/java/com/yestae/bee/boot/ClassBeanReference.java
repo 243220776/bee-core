@@ -1,4 +1,4 @@
-package com.xx.core.boot;
+package com.yestae.bee.boot;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.RuntimeBeanReference;

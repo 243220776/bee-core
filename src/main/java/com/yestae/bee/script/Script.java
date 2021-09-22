@@ -1,4 +1,4 @@
-package com.xx.core.script;
+package com.yestae.bee.script;
 
 
 /**

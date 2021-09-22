@@ -1,8 +1,8 @@
-package com.xx.core.script.impl;
+package com.yestae.bee.script.impl;
 
-import com.xx.core.script.ScriptException;
-import com.xx.core.script.ScriptVariableProcessor;
-import com.xx.core.script.Script;
+import com.yestae.bee.script.ScriptException;
+import com.yestae.bee.script.ScriptVariableProcessor;
+import com.yestae.bee.script.Script;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.script.ScriptEngine;

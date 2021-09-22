@@ -1,6 +1,6 @@
-package com.xx.core.test;
+package com.yestae.bee.test;
 
-import com.xx.core.boot.EnableInitializer;
+import com.yestae.bee.boot.EnableInitializer;
 
 import java.lang.annotation.*;
 
@@ -9,4 +9,6 @@ import java.lang.annotation.*;
 @Inherited
 @EnableInitializer(CustomInitializer.class)
 public @interface CustomInitializerEnable {
+
+    String value();
 }

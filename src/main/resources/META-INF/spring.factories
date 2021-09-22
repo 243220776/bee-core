@@ -1,4 +1,4 @@
 
 # Application Context Initializers
 org.springframework.context.ApplicationContextInitializer=\
-com.xx.core.boot.BootstrapInitializer
+com.yestae.bee.boot.BootstrapInitializer

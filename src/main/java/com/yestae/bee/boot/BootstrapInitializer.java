@@ -1,12 +1,12 @@
-package com.xx.core.boot;
+package com.yestae.bee.boot;
 
-import com.xx.core.config.BeeClientConfiguration;
-import com.xx.core.script.Script;
-import com.xx.core.script.ScriptHelper;
-import com.xx.core.script.ScriptVariableProcessor;
-import com.xx.core.script.impl.ScriptFactory;
-import com.xx.core.spring.SpringContextHolder;
-import com.xx.core.config.Constants;
+import com.yestae.bee.config.BeeClientConfiguration;
+import com.yestae.bee.config.Constants;
+import com.yestae.bee.script.Script;
+import com.yestae.bee.script.ScriptHelper;
+import com.yestae.bee.script.ScriptVariableProcessor;
+import com.yestae.bee.script.impl.ScriptFactory;
+import com.yestae.bee.spring.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContextInitializer;
@@ -54,7 +54,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
         initScriptProcessor(appContext);
         // 获取所有的组件开启注解
         Map<EnableInitializer, Annotation> initializerAnnotations = new HashMap<EnableInitializer, Annotation>();
-        getEnableInitializer(initializerAnnotations);
+//        getEnableInitializer(initializerAnnotations);
         getEnableInitializer(null, applicationClass, initializerAnnotations);
         Map<ApplicationInitializer, EnableInitializer> initializerMap = new HashMap<ApplicationInitializer, EnableInitializer>();
         Map<ApplicationInitializer, Annotation> enableAnnotationMap = new HashMap<ApplicationInitializer, Annotation>();
@@ -175,68 +175,64 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
         }
     }
 
-    /**
-     * 
-     * @param initializerAnnotations
-     */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void getEnableInitializer(Map<EnableInitializer, Annotation> initializerAnnotations) {
-        ResourcePatternResolver rr = new PathMatchingResourcePatternResolver();
-        try {
-            Resource[] rs = rr.getResources("classpath*:META-INF/boot/com.xx.core.boot.ApplicationInitializer");
-            if (rs != null) {
-                for (Resource r : rs) {
-                    List<String> lines = readAllLines(new BufferedReader(new InputStreamReader(r.getInputStream())));
-                    if (lines != null) {
-                        for (String line : lines) {
-                            String className = null;
-                            String conditiont = null;
-                            int emptyIndex = line.indexOf(" ");
-                            if(emptyIndex < 0){
-                                className = line;
-                            }else {
-                                if (emptyIndex > 0) {
-                                    className = line.substring(0, emptyIndex);
-                                }
-                                if (line.length() > emptyIndex) {
-                                    conditiont = line.substring(emptyIndex).trim();
-                                }
-                            }
-                            Class initializerClasst = null;
-                            try {
-                                initializerClasst = Class.forName(className);
-                            } catch (ClassNotFoundException e) {
-                                throw new InitializeException("META-INF/boot/com.xx.boot.ApplicationInitializer " + line + " "
-                                        + e.getMessage(), e);
-                            }
-                            final String condition = StringUtils.isBlank(conditiont) ? "true" : conditiont;
-                            final Class<? extends ApplicationInitializer>[] initers = new Class[] { initializerClasst };
-                            EnableInitializer initializer = new EnableInitializer() {
-
-                                @Override
-                                public Class<? extends Annotation> annotationType() {
-                                    return EnableInitializer.class;
-                                }
-
-                                @Override
-                                public Class<? extends ApplicationInitializer>[] value() {
-                                    return initers;
-                                }
-
-                                @Override
-                                public String condition() {
-                                    return condition;
-                                }
-                            };
-                            initializerAnnotations.put(initializer, null);
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            log.warn("", e);
-        }
-    }
+//    @SuppressWarnings({ "rawtypes", "unchecked" })
+//    private void getEnableInitializer(Map<EnableInitializer, Annotation> initializerAnnotations) {
+//        ResourcePatternResolver rr = new PathMatchingResourcePatternResolver();
+//        try {
+//            Resource[] rs = rr.getResources("classpath*:META-INF/bee/com.yestae.bee.boot.ApplicationInitializer");
+//            if (rs != null) {
+//                for (Resource r : rs) {
+//                    List<String> lines = readAllLines(new BufferedReader(new InputStreamReader(r.getInputStream())));
+//                    if (lines != null) {
+//                        for (String line : lines) {
+//                            String className = null;
+//                            String conditiont = null;
+//                            int emptyIndex = line.indexOf(" ");
+//                            if(emptyIndex < 0){
+//                                className = line;
+//                            }else {
+//                                if (emptyIndex > 0) {
+//                                    className = line.substring(0, emptyIndex);
+//                                }
+//                                if (line.length() > emptyIndex) {
+//                                    conditiont = line.substring(emptyIndex).trim();
+//                                }
+//                            }
+//                            Class initializerClasst = null;
+//                            try {
+//                                initializerClasst = Class.forName(className);
+//                            } catch (ClassNotFoundException e) {
+//                                throw new InitializeException("META-INF/bee/com.yestae.bee.boot.ApplicationInitializer " + line + " "
+//                                        + e.getMessage(), e);
+//                            }
+//                            final String condition = StringUtils.isBlank(conditiont) ? "true" : conditiont;
+//                            final Class<? extends ApplicationInitializer>[] initers = new Class[] { initializerClasst };
+//                            EnableInitializer initializer = new EnableInitializer() {
+//
+//                                @Override
+//                                public Class<? extends Annotation> annotationType() {
+//                                    return EnableInitializer.class;
+//                                }
+//
+//                                @Override
+//                                public Class<? extends ApplicationInitializer>[] value() {
+//                                    return initers;
+//                                }
+//
+//                                @Override
+//                                public String condition() {
+//                                    return condition;
+//                                }
+//                            };
+//                            initializerAnnotations.put(initializer, null);
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (IOException e) {
+//            log.warn("", e);
+//        }
+//    }
 
     private String genInitializerBeanName(ApplicationInitializer initializer) {
         return StringUtils.uncapitalize(initializer.getClass().getSimpleName());

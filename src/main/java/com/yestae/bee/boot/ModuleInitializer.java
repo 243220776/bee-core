@@ -1,4 +1,4 @@
-package com.xx.core.boot;
+package com.yestae.bee.boot;
 
 import org.springframework.context.ConfigurableApplicationContext;
 

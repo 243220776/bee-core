@@ -1,4 +1,4 @@
-package com.xx.core.spring;
+package com.yestae.bee.spring;
 
 import org.springframework.context.ApplicationContext;
 

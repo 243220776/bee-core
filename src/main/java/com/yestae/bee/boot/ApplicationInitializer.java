@@ -1,6 +1,6 @@
-package com.xx.core.boot;
+package com.yestae.bee.boot;
 
-import com.xx.core.config.Constants;
+import com.yestae.bee.config.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;

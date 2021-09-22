@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.xx.core.config;
+package com.yestae.bee.config;
 
-import com.xx.core.boot.Application;
+import com.yestae.bee.boot.Application;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
@@ -19,11 +19,13 @@ public class BeeClientLocalProperties extends Properties {
     private static final long serialVersionUID = -827905326646091100L;
 
 
-    private String scanPackage = "com.xx.core";
+    private String scanPackage = "com.yestae";
+
+    private String basePackage = "com.yestae";
 
     private String appName = "application";
 
-    private String rootProperties = "xx.properties";
+    private String rootProperties = "bee.properties";
 
     private Class<?> applicationClasss;
 
@@ -96,7 +98,7 @@ public class BeeClientLocalProperties extends Properties {
         } catch (FileNotFoundException e) {
         }
         if (coustemProperties == null) {
-            coustemFile = System.getProperty("xx.config.location");
+            coustemFile = System.getProperty("bee.config.location");
             if (StringUtils.isBlank(coustemFile)) {
                 coustemFile = System.getProperty("spring.config.location");
             }
@@ -151,6 +153,8 @@ public class BeeClientLocalProperties extends Properties {
     public String getScanPackage() {
         return scanPackage;
     }
+
+    public String getBasePackage() {return basePackage; }
 
     public Class<?> getApplicationClasss() {
         return applicationClasss;

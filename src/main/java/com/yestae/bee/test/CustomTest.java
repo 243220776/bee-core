@@ -1,4 +1,4 @@
-package com.xx.core.test;
+package com.yestae.bee.test;
 
 public class CustomTest {
     public CustomTest() {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xx.core.boot;
+package com.yestae.bee.boot;
 
 import java.lang.annotation.*;
 

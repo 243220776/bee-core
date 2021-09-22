@@ -8,11 +8,13 @@
         <version>2.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.xx.core</groupId>
-    <artifactId>spring-xx-core</artifactId>
+
+    <groupId>com.yestae.bee</groupId>
+    <artifactId>bee-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-xx-core</name>
-    <description>spring-xx-core</description>
+
+    <name>bee-core</name>
+    <description>bee-core</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -36,13 +38,13 @@
         </dependency>
     </dependencies>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 </project>
