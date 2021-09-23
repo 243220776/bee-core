@@ -9,8 +9,9 @@ public class CustomInitializer implements ModuleInitializer<CustomInitializerEna
 
     @Override
     public void init(CustomInitializerEnable enableAnno, ConfigurableApplicationContext appContext) throws InitializeException {
-        System.out.println(enableAnno.value());
-        registerBean(CustomTest.class, appContext);
+        if (enableAnno.enable()) {
+            registerBean(CustomTest.class, appContext);
+        }
     }
 
     @Override

@@ -30,7 +30,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
 
     @Override
     public void initialize(ConfigurableApplicationContext appContext) {
-        log.info("enable xxx={}", "init...");
+        log.info("bee-core enable = {}", true);
         Class<?> applicationClass = BeeClientConfiguration.getLocalProperies().getApplicationClasss();
         Properties systemDef = new Properties();
         String appName = BeeClientConfiguration.getLocalProperies().getAppName();
@@ -63,13 +63,15 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
         for (Entry<EnableInitializer, Annotation> entry : initializerAnnotations.entrySet()) {
             EnableInitializer initializerAnnotation = entry.getKey();
             Annotation enableAnnotation = entry.getValue();
+            log.info("bee-core scanner start ++++++++++++");
+            log.info("                                  |");
             for (Class<?> initializerClass : initializerAnnotation.value()) {
                 if (!clazzSet.contains(initializerClass)) {
                     clazzSet.add(initializerClass);
                     try {
                         ApplicationInitializer initializer = (ApplicationInitializer) initializerClass.newInstance();
                         initializers.add(initializer);
-                        log.info("finded [{}]", initializer);
+                        log.info("bee-core scanned : [{}]", initializer);
                         initializerMap.put(initializer, initializerAnnotation);
                         enableAnnotationMap.put(initializer, enableAnnotation);
                         appContext.getBeanFactory().registerSingleton(genInitializerBeanName(initializer), initializer);
@@ -86,6 +88,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
                 return arg0.order() - arg1.order();
             }
         });
+
         for (ApplicationInitializer initializer : initializers) {
             try {
                 EnableInitializer initializerAnnotation = initializerMap.get(initializer);
@@ -109,6 +112,8 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
                 throw new RuntimeException(e);
             }
         }
+        log.info("                                  |");
+        log.info("bee-core scanned end ++++++++++++++");
     }
 
     private void initScriptProcessor(final ConfigurableApplicationContext applicationContext) {

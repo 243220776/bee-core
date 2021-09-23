@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @EnableInitializer(CustomInitializer.class)
 public @interface CustomInitializerEnable {
 
-    String value();
+    boolean enable() default true;
 }
