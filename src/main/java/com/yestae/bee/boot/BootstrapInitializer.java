@@ -7,30 +7,28 @@ import com.yestae.bee.script.ScriptHelper;
 import com.yestae.bee.script.ScriptVariableProcessor;
 import com.yestae.bee.script.impl.ScriptFactory;
 import com.yestae.bee.spring.SpringContextHolder;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.PropertiesPropertySource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.Map.Entry;
 
-@Slf4j
 public class BootstrapInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext>, Ordered {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void initialize(ConfigurableApplicationContext appContext) {
-        log.info("bee-core enable = {}", true);
+        logger.info("bee-core enable = {}", true);
         Class<?> applicationClass = BeeClientConfiguration.getLocalProperies().getApplicationClasss();
         Properties systemDef = new Properties();
         String appName = BeeClientConfiguration.getLocalProperies().getAppName();
@@ -63,15 +61,15 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
         for (Entry<EnableInitializer, Annotation> entry : initializerAnnotations.entrySet()) {
             EnableInitializer initializerAnnotation = entry.getKey();
             Annotation enableAnnotation = entry.getValue();
-            log.info("bee-core scanner start ++++++++++++");
-            log.info("                                  |");
+            logger.info("bee-core scanner start ++++++++++++");
+            logger.info("                                  |");
             for (Class<?> initializerClass : initializerAnnotation.value()) {
                 if (!clazzSet.contains(initializerClass)) {
                     clazzSet.add(initializerClass);
                     try {
                         ApplicationInitializer initializer = (ApplicationInitializer) initializerClass.newInstance();
                         initializers.add(initializer);
-                        log.info("bee-core scanned : [{}]", initializer);
+                        logger.info("bee-core scanned : [{}]", initializer);
                         initializerMap.put(initializer, initializerAnnotation);
                         enableAnnotationMap.put(initializer, enableAnnotation);
                         appContext.getBeanFactory().registerSingleton(genInitializerBeanName(initializer), initializer);
@@ -104,16 +102,16 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
                     } else {
                         initializer.init(appContext);
                     }
-                    log.info("[{}] initialized", initializer.getClass().getName());
+                    logger.info("[{}] initialized", initializer.getClass().getName());
                 } else {
-                    log.info("[{}] not match condition {}", initializer.getClass().getName(), initializerAnnotation.condition());
+                    logger.info("[{}] not match condition {}", initializer.getClass().getName(), initializerAnnotation.condition());
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        log.info("                                  |");
-        log.info("bee-core scanned end ++++++++++++++");
+        logger.info("                                  |");
+        logger.info("bee-core scanned end ++++++++++++++");
     }
 
     private void initScriptProcessor(final ConfigurableApplicationContext applicationContext) {
@@ -148,7 +146,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
                 match = Boolean.parseBoolean(obj.toString());
             }
         } catch (Throwable e) {
-            log.warn(e.getMessage());
+            logger.warn(e.getMessage());
             match = false;
         }
         return match;

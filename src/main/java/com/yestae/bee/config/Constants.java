@@ -5,7 +5,6 @@ package com.yestae.bee.config;
 
 
 /**
- * @author erxiao 2017年1月21日
  */
 public class Constants {
 
