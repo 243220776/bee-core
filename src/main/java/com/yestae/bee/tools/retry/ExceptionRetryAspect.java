@@ -47,12 +47,12 @@ public class ExceptionRetryAspect {
         for (int i = 1; i <= count; i++) {
             try {
                 Object obj = joinPoint.proceed();
-                logger.info("第" + i + "次执行方法【" + name + "】成功！");
+                logger.info("The {} execution method [ {} ] succeeded!", i, name);
                 return obj;
             } catch (Throwable e) {
                 for (Class<?> ss : excaptions) {
                     if (e.getClass().equals(ss)) {
-                        logger.error("第" + i + "次执行方法【" + name + "】失败！");
+                        logger.error("The {1} execution method [ {} ] fails!", i, name);
                         if (i == count) {
                             throw e;
                         }
