@@ -19,10 +19,8 @@ public class BeeClientConfiguration {
         String p2 = (String) localProperies.get(Constants.CONFIG_HTTP_PORT);
         if (!StringUtils.isBlank(p2)) {
             localProperies.put(Constants.CONFIG_HTTP_PORT, Integer.parseInt(p2));
-            localProperies.put("server.port", Integer.parseInt(p2));
         }
         localProperies.put(Constants.CONFIG_APPNAME_KEY, localProperies.getAppName());
-        localProperies.put("spring.application.name", localProperies.getAppName());
     }
 
     public static BeeClientConfiguration get() {
