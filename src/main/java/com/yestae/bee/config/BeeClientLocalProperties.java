@@ -31,8 +31,8 @@ public class BeeClientLocalProperties extends Properties {
 
     public void load() {
         loadDefaultFromClass();
-        loadDefaultFromBeeProperties();
-        loadDefaultFromAppProperties();
+//        loadDefaultFromBeeProperties();
+//        loadDefaultFromAppProperties();
         loadDefaultFromSystem();
     }
 
