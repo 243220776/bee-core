@@ -23,7 +23,7 @@ public class BeeClientLocalProperties extends Properties {
 
     private String basePackage = "com.yestae";
 
-    private String appName = "application";
+    private String appName = "bee";
 
     private String rootProperties = "bee.properties";
 
