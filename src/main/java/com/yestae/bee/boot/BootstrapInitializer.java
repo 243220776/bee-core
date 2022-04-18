@@ -244,17 +244,15 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
     /**
      * Read all lines from the specified buffered reader.
      *
-     * @param reader
-     *            - the buffered reader
+     * @param reader - the buffered reader
      * @return the lines from the reader as a List.
-     * @throws IOException
-     *             If an I/O error occurs.
+     * @throws IOException If an I/O error occurs.
      * @since 1.0.6
      */
     public static List<String> readAllLines(BufferedReader reader) throws IOException {
         try {
             List<String> result = new ArrayList<>();
-            for (;;) {
+            for (; ; ) {
                 String line = reader.readLine();
                 if (line == null) {
                     break;
@@ -270,8 +268,7 @@ public class BootstrapInitializer implements ApplicationContextInitializer<Confi
     /**
      * Close object quietly.
      *
-     * @param closeable
-     *            - the object to close
+     * @param closeable - the object to close
      */
     public static void closeQuietly(Closeable closeable) {
         if (closeable != null) {

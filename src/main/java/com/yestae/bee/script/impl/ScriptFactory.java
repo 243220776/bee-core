@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ *
  */
 public class ScriptFactory implements Script {
 
@@ -62,7 +63,8 @@ public class ScriptFactory implements Script {
             if (varVal == null && this.processor != null) {
                 varVal = this.processor.process(varExr);
             }
-            String varKey = varExr.replaceAll("\\.", "_").replaceAll("-", "_");;
+            String varKey = varExr.replaceAll("\\.", "_").replaceAll("-", "_");
+            ;
             script = script.replaceAll("\\$\\{" + varExr + "\\}", varKey);
             engine.put(varKey, varVal);
         }
@@ -72,5 +74,5 @@ public class ScriptFactory implements Script {
             throw new ScriptException("eval script [" + backCondition + "] error:" + e.getMessage(), e);
         }
     }
-    
+
 }

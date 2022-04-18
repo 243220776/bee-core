@@ -126,7 +126,7 @@ public class DataTimeWindow<T> {
     }
 
     public void push(T data) {
-        if(!isAlive()) {
+        if (!isAlive()) {
             throw new IllegalStateException("invalid time window");
         }
         if (data == null) {
@@ -162,7 +162,7 @@ public class DataTimeWindow<T> {
      * @return
      */
     public T pick(T data) {
-        if(!isAlive()) {
+        if (!isAlive()) {
             throw new IllegalStateException("invalid time window");
         }
         if (data == null) {

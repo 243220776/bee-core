@@ -3,6 +3,7 @@ package com.yestae.bee.boot;
 import java.lang.annotation.*;
 
 /**
+ *
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -10,5 +11,5 @@ import java.lang.annotation.*;
 public @interface EnableInitializers {
 
     EnableInitializer[] value();
-    
+
 }

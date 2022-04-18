@@ -27,9 +27,8 @@ import java.util.List;
 
 /**
  * boot 初始化执行接口，在应用启动生命周期中首先被执行。
- * 
+ * <p>
  * {@link #order()}方法用于标识该执行器的优先级，数字越小优先级越高， 默认取值 ApplicationInitializer.COMMON_ORDER : {@value #COMMON_ORDER}
- * 
  */
 public interface ApplicationInitializer {
 
@@ -56,11 +55,11 @@ public interface ApplicationInitializer {
     }
 
     default public String registerBean(Class<?> clazz, ConfigurableApplicationContext appContext, BeanNameGenerator generator) {
-        return registerBean(clazz, appContext, new AnnotationBeanNameGenerator(), new Class<?>[] {});
+        return registerBean(clazz, appContext, new AnnotationBeanNameGenerator(), new Class<?>[]{});
     }
 
     default public String registerBean(Class<?> clazz, ConfigurableApplicationContext appContext, BeanNameGenerator generator,
-            Class<?>... autoInjectVals) {
+                                       Class<?>... autoInjectVals) {
         if (appContext instanceof BeanDefinitionRegistry) {
             try {
                 BeanDefinitionRegistry registry = (BeanDefinitionRegistry) appContext;
@@ -96,7 +95,7 @@ public interface ApplicationInitializer {
 
     /**
      * 将某个包下的索引class都注入到bean 容器中
-     * 
+     *
      * @param packageName
      * @param appContext
      */
@@ -123,7 +122,7 @@ public interface ApplicationInitializer {
 
     /**
      * 将包含目标注解的类注入到bean容器里，扫描的包是根据bee-core的scanPackage配置进行注入的
-     * 
+     *
      * @param annotationType
      * @param appContext
      */
@@ -138,7 +137,7 @@ public interface ApplicationInitializer {
 
     /**
      * 将包含类注入到bean容器里，扫描的包是根据bee-core的scanPackage配置进行注入的
-     * 
+     *
      * @param includeFilter
      * @param appContext
      */
@@ -208,7 +207,7 @@ public interface ApplicationInitializer {
             findAnnotationOnClass(intf, target, annotations);
         }
     }
-    
+
 //    default String getProperty(ConfigurableApplicationContext appContext, String key) {
 //        return appContext.getEnvironment().getProperty(key);
 //    }

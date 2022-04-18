@@ -3,6 +3,7 @@ package com.yestae.bee.spring;
 import org.springframework.context.ApplicationContext;
 
 /**
+ *
  */
 public class SpringContextHolder {
 

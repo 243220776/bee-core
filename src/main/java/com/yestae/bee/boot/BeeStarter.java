@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan({ "com.yestae", "${bee.config.scanPackage}" })
+@ComponentScan({"com.yestae", "${bee.config.scanPackage}"})
 public class BeeStarter {
     private static final Logger logger = LoggerFactory.getLogger(BeeStarter.class);
 

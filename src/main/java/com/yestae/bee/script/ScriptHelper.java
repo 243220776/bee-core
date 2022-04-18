@@ -1,6 +1,7 @@
 package com.yestae.bee.script;
 
 /**
+ *
  */
 public class ScriptHelper {
 

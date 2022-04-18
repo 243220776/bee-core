@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.BeanDefinitionValidationException;
 
 /**
+ *
  */
 public class ClassBeanReference extends RuntimeBeanReference {
 

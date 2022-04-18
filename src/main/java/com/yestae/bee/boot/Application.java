@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.yestae.bee.boot;
 

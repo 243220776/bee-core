@@ -26,5 +26,5 @@ public @interface ExceptionRetry {
      *
      * @return
      */
-    Class<? extends Throwable> [] value() default {Throwable.class};
+    Class<? extends Throwable>[] value() default {Throwable.class};
 }

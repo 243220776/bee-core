@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.yestae.bee.config;
 
@@ -14,8 +14,8 @@ import java.util.Properties;
 public class BeeClientLocalProperties extends Properties {
 
     /**
-	 * 
-	 */
+     *
+     */
     private static final long serialVersionUID = -827905326646091100L;
 
 
@@ -123,7 +123,7 @@ public class BeeClientLocalProperties extends Properties {
         this.putAll(System.getenv());
     }
 
-    @SuppressWarnings({ "restriction", "deprecation" })
+    @SuppressWarnings({"restriction", "deprecation"})
     protected void loadDefaultFromClass() {
         Class<?> parentClass = null;
         Application startClass = null;
@@ -137,10 +137,10 @@ public class BeeClientLocalProperties extends Properties {
             }
             i++;
         }
-        if(startClass != null) {
+        if (startClass != null) {
             this.applicationClasss = parentClass;
             this.appName = startClass.value();
-            if(startClass.scanPackage() != null && startClass.scanPackage().length > 0) {
+            if (startClass.scanPackage() != null && startClass.scanPackage().length > 0) {
                 this.scanPackage = StringUtils.join(startClass.scanPackage(), ",");
             }
         }
@@ -154,7 +154,9 @@ public class BeeClientLocalProperties extends Properties {
         return scanPackage;
     }
 
-    public String getBasePackage() {return basePackage; }
+    public String getBasePackage() {
+        return basePackage;
+    }
 
     public Class<?> getApplicationClasss() {
         return applicationClasss;
